@@ -30,12 +30,12 @@
   [super viewDidLoad];
   
   self.view.backgroundColor = [UIColor whiteColor];
-  NSLog(@"%@", _friendUserName);
   self.navigationItem.title = _friendUserName;
   
   messageHistoryTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
   messageHistoryTableView.delegate = self;
   messageHistoryTableView.dataSource = self;
+  [messageHistoryTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
   [messageHistoryTableView reloadData];
   [messageHistoryTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"MessageList"];
   [self.view addSubview:messageHistoryTableView];
@@ -154,7 +154,7 @@
      parameters:@{@"access_token":_accessToken, @"user_name": _friendUserName, @"msg": textMessage}
         success:^(AFHTTPRequestOperation *operation, id responseObject) {
           NSLog(@"User: %@", responseObject);
-          if ([[responseObject objectForKey:@"status"] intValue]==0)
+          if ([[responseObject objectForKey:@"status"] intValue] == 0)
           {
             UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Send Message Failed"
                                                               message:[NSString stringWithFormat:@"%@", [responseObject objectForKey:@"error"]]

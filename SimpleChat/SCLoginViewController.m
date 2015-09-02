@@ -68,7 +68,7 @@
      parameters:@{@"user_name":Username, @"password": Password}
         success:^(AFHTTPRequestOperation *operation, id responseObject) {
           NSLog(@"User: %@", responseObject);
-          if ([[responseObject objectForKey:@"status"] intValue]==0)
+          if ([[responseObject objectForKey:@"status"] intValue] == 0)
           {
             UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Login Failed"
                                                               message:[NSString stringWithFormat:@"%@", [responseObject objectForKey:@"error"]]
