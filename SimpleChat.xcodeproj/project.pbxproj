@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		82D6AE5471FE3B7DFA58350A /* libPods-SimpleChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44A6952D0EFCF9BB373837C7 /* libPods-SimpleChat.a */; };
 		87132A5D1B932B35005C8BE0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87132A5C1B932B35005C8BE0 /* main.m */; };
 		87132A601B932B35005C8BE0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87132A5F1B932B35005C8BE0 /* AppDelegate.m */; };
 		87132A631B932B35005C8BE0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87132A621B932B35005C8BE0 /* ViewController.m */; };
@@ -14,6 +15,14 @@
 		87132A681B932B36005C8BE0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87132A671B932B36005C8BE0 /* Images.xcassets */; };
 		87132A6B1B932B36005C8BE0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87132A691B932B36005C8BE0 /* LaunchScreen.xib */; };
 		87132A771B932B36005C8BE0 /* SimpleChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87132A761B932B36005C8BE0 /* SimpleChatTests.m */; };
+		87132A9A1B937843005C8BE0 /* SCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87132A991B937843005C8BE0 /* SCLoginViewController.m */; };
+		87132A9D1B93787E005C8BE0 /* SCUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87132A9C1B93787E005C8BE0 /* SCUserViewController.m */; };
+		87132AA31B937969005C8BE0 /* SCMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87132AA21B937969005C8BE0 /* SCMessageViewController.m */; };
+		87132AA91B937A6A005C8BE0 /* SCFriendListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87132AA81B937A6A005C8BE0 /* SCFriendListTableViewController.m */; };
+		87A834301B93FAA500CE5C49 /* SCMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A8342F1B93FAA500CE5C49 /* SCMessageTableViewCell.m */; };
+		87A834331B93FDE500CE5C49 /* SCChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A834321B93FDE500CE5C49 /* SCChatMessage.m */; };
+		87A834391B93FE9100CE5C49 /* SCDialogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A834381B93FE9100CE5C49 /* SCDialogViewController.m */; };
+		87DB5B0C1B96F2AD00F68B4E /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DB5B0B1B96F2AD00F68B4E /* User.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		44A6952D0EFCF9BB373837C7 /* libPods-SimpleChat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SimpleChat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87132A571B932B35005C8BE0 /* SimpleChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87132A5B1B932B35005C8BE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87132A5C1B932B35005C8BE0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,6 +50,24 @@
 		87132A701B932B36005C8BE0 /* SimpleChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		87132A751B932B36005C8BE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87132A761B932B36005C8BE0 /* SimpleChatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleChatTests.m; sourceTree = "<group>"; };
+		87132A981B937843005C8BE0 /* SCLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLoginViewController.h; sourceTree = "<group>"; };
+		87132A991B937843005C8BE0 /* SCLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLoginViewController.m; sourceTree = "<group>"; };
+		87132A9B1B93787E005C8BE0 /* SCUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCUserViewController.h; sourceTree = "<group>"; };
+		87132A9C1B93787E005C8BE0 /* SCUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCUserViewController.m; sourceTree = "<group>"; };
+		87132AA11B937969005C8BE0 /* SCMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCMessageViewController.h; sourceTree = "<group>"; };
+		87132AA21B937969005C8BE0 /* SCMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCMessageViewController.m; sourceTree = "<group>"; };
+		87132AA71B937A6A005C8BE0 /* SCFriendListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCFriendListTableViewController.h; sourceTree = "<group>"; };
+		87132AA81B937A6A005C8BE0 /* SCFriendListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCFriendListTableViewController.m; sourceTree = "<group>"; };
+		87A8342E1B93FAA500CE5C49 /* SCMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCMessageTableViewCell.h; sourceTree = "<group>"; };
+		87A8342F1B93FAA500CE5C49 /* SCMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCMessageTableViewCell.m; sourceTree = "<group>"; };
+		87A834311B93FDE500CE5C49 /* SCChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCChatMessage.h; sourceTree = "<group>"; };
+		87A834321B93FDE500CE5C49 /* SCChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCChatMessage.m; sourceTree = "<group>"; };
+		87A834371B93FE9100CE5C49 /* SCDialogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCDialogViewController.h; sourceTree = "<group>"; };
+		87A834381B93FE9100CE5C49 /* SCDialogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCDialogViewController.m; sourceTree = "<group>"; };
+		87DB5B0A1B96F2AD00F68B4E /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		87DB5B0B1B96F2AD00F68B4E /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		F1C4904C1EA252D6CB96444E /* Pods-SimpleChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleChat/Pods-SimpleChat.debug.xcconfig"; sourceTree = "<group>"; };
+		F7817223FDA08AF3A5ABA998 /* Pods-SimpleChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleChat/Pods-SimpleChat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82D6AE5471FE3B7DFA58350A /* libPods-SimpleChat.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +89,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		62B306CFE94B8633AA9FFAC9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F1C4904C1EA252D6CB96444E /* Pods-SimpleChat.debug.xcconfig */,
+				F7817223FDA08AF3A5ABA998 /* Pods-SimpleChat.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		87132A4E1B932B35005C8BE0 = {
 			isa = PBXGroup;
 			children = (
 				87132A591B932B35005C8BE0 /* SimpleChat */,
 				87132A731B932B36005C8BE0 /* SimpleChatTests */,
 				87132A581B932B35005C8BE0 /* Products */,
+				62B306CFE94B8633AA9FFAC9 /* Pods */,
+				E42B485B543E3A668076CC4C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,12 +123,15 @@
 			children = (
 				87132A5E1B932B35005C8BE0 /* AppDelegate.h */,
 				87132A5F1B932B35005C8BE0 /* AppDelegate.m */,
-				87132A611B932B35005C8BE0 /* ViewController.h */,
-				87132A621B932B35005C8BE0 /* ViewController.m */,
+				87DB5B0A1B96F2AD00F68B4E /* User.h */,
+				87DB5B0B1B96F2AD00F68B4E /* User.m */,
+				87A8343A1B9409B000CE5C49 /* ViewController */,
 				87132A641B932B36005C8BE0 /* Main.storyboard */,
 				87132A671B932B36005C8BE0 /* Images.xcassets */,
 				87132A691B932B36005C8BE0 /* LaunchScreen.xib */,
 				87132A5A1B932B35005C8BE0 /* Supporting Files */,
+				87A834311B93FDE500CE5C49 /* SCChatMessage.h */,
+				87A834321B93FDE500CE5C49 /* SCChatMessage.m */,
 			);
 			path = SimpleChat;
 			sourceTree = "<group>";
@@ -119,6 +162,35 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		87A8343A1B9409B000CE5C49 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				87132A611B932B35005C8BE0 /* ViewController.h */,
+				87132A621B932B35005C8BE0 /* ViewController.m */,
+				87132A981B937843005C8BE0 /* SCLoginViewController.h */,
+				87132A991B937843005C8BE0 /* SCLoginViewController.m */,
+				87132A9B1B93787E005C8BE0 /* SCUserViewController.h */,
+				87132A9C1B93787E005C8BE0 /* SCUserViewController.m */,
+				87132AA71B937A6A005C8BE0 /* SCFriendListTableViewController.h */,
+				87132AA81B937A6A005C8BE0 /* SCFriendListTableViewController.m */,
+				87132AA11B937969005C8BE0 /* SCMessageViewController.h */,
+				87132AA21B937969005C8BE0 /* SCMessageViewController.m */,
+				87A8342E1B93FAA500CE5C49 /* SCMessageTableViewCell.h */,
+				87A8342F1B93FAA500CE5C49 /* SCMessageTableViewCell.m */,
+				87A834371B93FE9100CE5C49 /* SCDialogViewController.h */,
+				87A834381B93FE9100CE5C49 /* SCDialogViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		E42B485B543E3A668076CC4C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				44A6952D0EFCF9BB373837C7 /* libPods-SimpleChat.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,9 +198,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 87132A7A1B932B36005C8BE0 /* Build configuration list for PBXNativeTarget "SimpleChat" */;
 			buildPhases = (
+				FC8942DAAE0146C6611D95D7 /* Check Pods Manifest.lock */,
 				87132A531B932B35005C8BE0 /* Sources */,
 				87132A541B932B35005C8BE0 /* Frameworks */,
 				87132A551B932B35005C8BE0 /* Resources */,
+				0990F6E7216A4F30626C5D03 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -214,14 +288,55 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0990F6E7216A4F30626C5D03 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleChat/Pods-SimpleChat-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FC8942DAAE0146C6611D95D7 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		87132A531B932B35005C8BE0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87132A9A1B937843005C8BE0 /* SCLoginViewController.m in Sources */,
+				87A834301B93FAA500CE5C49 /* SCMessageTableViewCell.m in Sources */,
+				87A834331B93FDE500CE5C49 /* SCChatMessage.m in Sources */,
+				87A834391B93FE9100CE5C49 /* SCDialogViewController.m in Sources */,
+				87132AA91B937A6A005C8BE0 /* SCFriendListTableViewController.m in Sources */,
 				87132A631B932B35005C8BE0 /* ViewController.m in Sources */,
+				87DB5B0C1B96F2AD00F68B4E /* User.m in Sources */,
 				87132A601B932B35005C8BE0 /* AppDelegate.m in Sources */,
+				87132AA31B937969005C8BE0 /* SCMessageViewController.m in Sources */,
 				87132A5D1B932B35005C8BE0 /* main.m in Sources */,
+				87132A9D1B93787E005C8BE0 /* SCUserViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +462,7 @@
 		};
 		87132A7B1B932B36005C8BE0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1C4904C1EA252D6CB96444E /* Pods-SimpleChat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SimpleChat/Info.plist;
@@ -357,6 +473,7 @@
 		};
 		87132A7C1B932B36005C8BE0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7817223FDA08AF3A5ABA998 /* Pods-SimpleChat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SimpleChat/Info.plist;
@@ -418,6 +535,7 @@
 				87132A7C1B932B36005C8BE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		87132A7D1B932B36005C8BE0 /* Build configuration list for PBXNativeTarget "SimpleChatTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +544,7 @@
 				87132A7F1B932B36005C8BE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
