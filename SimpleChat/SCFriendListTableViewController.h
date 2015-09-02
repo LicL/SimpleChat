@@ -9,12 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-#import "SCMessageViewController.h"// 不用了
-#import "SCDialogViewController.h"
+#import "SCMessageViewController.h"
 
 @interface SCFriendListTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
-
-//@property (strong, nonatomic) SCDialogViewController *activeDialogViewController;
 
 @property (strong, nonatomic) NSString *accessToken;
 @property (strong, nonatomic) NSMutableArray *friendListArray;

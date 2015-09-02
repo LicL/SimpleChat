@@ -17,7 +17,6 @@
   UITableView *tableView;
 }
 
-//@synthesize activeDialogViewController = _activeDialogViewController;
 @synthesize accessToken = _accessToken;
 @synthesize friendListArray = _friendListArray;
 @synthesize friendThumbnailArray = _friendThumbnailArray;
@@ -46,9 +45,6 @@
   [_friendThumbnailArray addObject:[NSString stringWithFormat:@"starbucks.jpg"]];
   [_friendThumbnailArray addObject:[NSString stringWithFormat:@"starbucks.jpg"]];
   [_friendThumbnailArray addObject:[NSString stringWithFormat:@"starbucks.jpg"]];
-  
-//  tableData = [NSArray arrayWithObjects:@"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", nil];
-//  thumbnails = [NSArray arrayWithObjects:@"starbucks.jpg", @"starbucks.jpg", @"starbucks.jpg", @"starbucks.jpg", @"starbucks.jpg", @"starbucks.jpg", @"starbucks.jpg", @"starbucks.jpg", @"starbucks.jpg", @"starbucks.jpg", @"starbucks.jpg", @"starbucks.jpg", @"starbucks.jpg", @"starbucks.jpg", @"starbucks.jpg", @"starbucks.jpg", nil];
   
   tableView = [self makeTableView];
   [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"FriendList"];
@@ -107,11 +103,6 @@
   messageViewController.accessToken = _accessToken;
   messageViewController.friendId = _friendListArray[indexPath.row];
   [self.navigationController pushViewController:messageViewController animated:YES];
-  
-//  SCDialogViewController *activeDialogViewController = [[SCDialogViewController alloc] init];
-//  activeDialogViewController.myUserId = _myUserId;
-//  activeDialogViewController.friendId = _friendListArray[indexPath.row];
-//  [self.navigationController pushViewController:activeDialogViewController animated:YES];
 }
 
 @end

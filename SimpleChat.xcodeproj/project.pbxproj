@@ -19,9 +19,6 @@
 		87132A9D1B93787E005C8BE0 /* SCUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87132A9C1B93787E005C8BE0 /* SCUserViewController.m */; };
 		87132AA31B937969005C8BE0 /* SCMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87132AA21B937969005C8BE0 /* SCMessageViewController.m */; };
 		87132AA91B937A6A005C8BE0 /* SCFriendListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87132AA81B937A6A005C8BE0 /* SCFriendListTableViewController.m */; };
-		87A834301B93FAA500CE5C49 /* SCMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A8342F1B93FAA500CE5C49 /* SCMessageTableViewCell.m */; };
-		87A834331B93FDE500CE5C49 /* SCChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A834321B93FDE500CE5C49 /* SCChatMessage.m */; };
-		87A834391B93FE9100CE5C49 /* SCDialogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A834381B93FE9100CE5C49 /* SCDialogViewController.m */; };
 		87DB5B0C1B96F2AD00F68B4E /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DB5B0B1B96F2AD00F68B4E /* User.m */; };
 /* End PBXBuildFile section */
 
@@ -58,12 +55,6 @@
 		87132AA21B937969005C8BE0 /* SCMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCMessageViewController.m; sourceTree = "<group>"; };
 		87132AA71B937A6A005C8BE0 /* SCFriendListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCFriendListTableViewController.h; sourceTree = "<group>"; };
 		87132AA81B937A6A005C8BE0 /* SCFriendListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCFriendListTableViewController.m; sourceTree = "<group>"; };
-		87A8342E1B93FAA500CE5C49 /* SCMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCMessageTableViewCell.h; sourceTree = "<group>"; };
-		87A8342F1B93FAA500CE5C49 /* SCMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCMessageTableViewCell.m; sourceTree = "<group>"; };
-		87A834311B93FDE500CE5C49 /* SCChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCChatMessage.h; sourceTree = "<group>"; };
-		87A834321B93FDE500CE5C49 /* SCChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCChatMessage.m; sourceTree = "<group>"; };
-		87A834371B93FE9100CE5C49 /* SCDialogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCDialogViewController.h; sourceTree = "<group>"; };
-		87A834381B93FE9100CE5C49 /* SCDialogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCDialogViewController.m; sourceTree = "<group>"; };
 		87DB5B0A1B96F2AD00F68B4E /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		87DB5B0B1B96F2AD00F68B4E /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		F1C4904C1EA252D6CB96444E /* Pods-SimpleChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleChat/Pods-SimpleChat.debug.xcconfig"; sourceTree = "<group>"; };
@@ -130,8 +121,6 @@
 				87132A671B932B36005C8BE0 /* Images.xcassets */,
 				87132A691B932B36005C8BE0 /* LaunchScreen.xib */,
 				87132A5A1B932B35005C8BE0 /* Supporting Files */,
-				87A834311B93FDE500CE5C49 /* SCChatMessage.h */,
-				87A834321B93FDE500CE5C49 /* SCChatMessage.m */,
 			);
 			path = SimpleChat;
 			sourceTree = "<group>";
@@ -175,10 +164,6 @@
 				87132AA81B937A6A005C8BE0 /* SCFriendListTableViewController.m */,
 				87132AA11B937969005C8BE0 /* SCMessageViewController.h */,
 				87132AA21B937969005C8BE0 /* SCMessageViewController.m */,
-				87A8342E1B93FAA500CE5C49 /* SCMessageTableViewCell.h */,
-				87A8342F1B93FAA500CE5C49 /* SCMessageTableViewCell.m */,
-				87A834371B93FE9100CE5C49 /* SCDialogViewController.h */,
-				87A834381B93FE9100CE5C49 /* SCDialogViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -327,9 +312,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				87132A9A1B937843005C8BE0 /* SCLoginViewController.m in Sources */,
-				87A834301B93FAA500CE5C49 /* SCMessageTableViewCell.m in Sources */,
-				87A834331B93FDE500CE5C49 /* SCChatMessage.m in Sources */,
-				87A834391B93FE9100CE5C49 /* SCDialogViewController.m in Sources */,
 				87132AA91B937A6A005C8BE0 /* SCFriendListTableViewController.m in Sources */,
 				87132A631B932B35005C8BE0 /* ViewController.m in Sources */,
 				87DB5B0C1B96F2AD00F68B4E /* User.m in Sources */,
