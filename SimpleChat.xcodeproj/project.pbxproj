@@ -38,8 +38,8 @@
 		87132A571B932B35005C8BE0 /* SimpleChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87132A5B1B932B35005C8BE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87132A5C1B932B35005C8BE0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		87132A5E1B932B35005C8BE0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		87132A5F1B932B35005C8BE0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		87132A5E1B932B35005C8BE0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = SimpleChat/AppDelegate.h; sourceTree = "<group>"; };
+		87132A5F1B932B35005C8BE0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = SimpleChat/AppDelegate.m; sourceTree = "<group>"; };
 		87132A611B932B35005C8BE0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		87132A621B932B35005C8BE0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		87132A651B932B36005C8BE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -95,6 +95,8 @@
 		87132A4E1B932B35005C8BE0 = {
 			isa = PBXGroup;
 			children = (
+				87132A5E1B932B35005C8BE0 /* AppDelegate.h */,
+				87132A5F1B932B35005C8BE0 /* AppDelegate.m */,
 				87132A591B932B35005C8BE0 /* SimpleChat */,
 				87132A731B932B36005C8BE0 /* SimpleChatTests */,
 				87132A581B932B35005C8BE0 /* Products */,
@@ -115,8 +117,6 @@
 		87132A591B932B35005C8BE0 /* SimpleChat */ = {
 			isa = PBXGroup;
 			children = (
-				87132A5E1B932B35005C8BE0 /* AppDelegate.h */,
-				87132A5F1B932B35005C8BE0 /* AppDelegate.m */,
 				871ABC2F1B97468D00F8BEBC /* SCUser.h */,
 				871ABC301B97468D00F8BEBC /* SCUser.m */,
 				871ABC321B97470900F8BEBC /* SCChatMessage.h */,

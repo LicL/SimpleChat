@@ -22,7 +22,7 @@
   [super viewDidLoad];
   
   self.view.backgroundColor = [UIColor whiteColor];
-  [self.navigationController setTitle:@"Profile"];
+  self.navigationItem.title = @"Profile";
   
   _friendList = [[NSMutableDictionary alloc] init];
   

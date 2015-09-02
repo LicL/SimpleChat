@@ -15,6 +15,7 @@
 @implementation SCMessageViewController
 {
   UITableView *messageHistoryTableView;
+  UIView *noMessageView;
 }
 
 @synthesize scrollView = _scrollView;
@@ -24,14 +25,13 @@
 @synthesize friendUserName = _friendUserName;
 @synthesize chatList = _chatList;
 
-//@synthesize messageHistoryTableView = _messageHistoryTableView;
-@synthesize activeTextField = _activeTextField;
-
 - (void)viewDidLoad
 {
   [super viewDidLoad];
   
   self.view.backgroundColor = [UIColor whiteColor];
+  NSLog(@"%@", _friendUserName);
+  self.navigationItem.title = _friendUserName;
   
   messageHistoryTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
   messageHistoryTableView.delegate = self;
@@ -39,6 +39,19 @@
   [messageHistoryTableView reloadData];
   [messageHistoryTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"MessageList"];
   [self.view addSubview:messageHistoryTableView];
+  
+  if ([_chatList count] == 0)
+  {
+    noMessageView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    noMessageView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:noMessageView];
+    
+    UILabel *noMessageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100.0, 30.0)];
+    [noMessageLabel setCenter:CGPointMake(self.view.center.x, self.view.center.y)];
+    [noMessageLabel setText:@"No Message"];
+    [noMessageLabel setTextColor:[UIColor darkGrayColor]];
+    [noMessageView addSubview:noMessageLabel];
+  }
   
   UIButton *sendMessageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   sendMessageButton.frame = CGRectMake(self.view.frame.size.width-50, self.view.frame.size.height-31, 50.0, 30.0);
@@ -152,6 +165,13 @@
           }
           else
           {
+            NSUInteger totalChat = [_chatList count];
+            if (totalChat == 0)
+            {
+              [noMessageView removeFromSuperview];
+              [messageHistoryTableView reloadData];
+            }
+            
             SCChatMessage *chatMessage = [[SCChatMessage alloc] init];
             chatMessage.created_at = createdTime;
             chatMessage.user_name = _myUserName;
@@ -185,7 +205,6 @@
   
   if (![_messageTextField.text isEqualToString:@""])
     [self sendMessageRequestWithText:_messageTextField.text at:dateString];
-  [messageHistoryTableView reloadData];
 }
 
 @end

@@ -21,8 +21,5 @@
 @property (nonatomic, strong) NSString *friendUserName;
 @property (strong, nonatomic) NSMutableDictionary *chatList;
 
-//@property (nonatomic, strong) IBOutlet UITableView *messageHistoryTableView;
-@property (nonatomic, strong) UITextField *activeTextField;
-
 
 @end
