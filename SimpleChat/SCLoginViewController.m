@@ -65,14 +65,14 @@
   [super didReceiveMemoryWarning];
 }
 
-- (void)loginRequest
+- (void)loginRequestWithUsername: (NSString*)Username andPassword:(NSString*)Password
 {
   AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
   [manager POST:@"http://104.155.215.148:5566/login"
-     parameters:@{@"user_name": _userNameTextField.text, @"password": _passwordTextField.text}
+     parameters:@{@"user_name":Username, @"password": Password}
         success:^(AFHTTPRequestOperation *operation, id responseObject) {
           NSLog(@"JSON: %@", responseObject);
-          if ([responseObject objectForKey:@"status"]==0)
+          if ([[responseObject objectForKey:@"status"] intValue]==0)
           {
             UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Log In Failed"
                                                               message:[NSString stringWithFormat:@"%@", [responseObject objectForKey:@"error"]]
@@ -117,19 +117,55 @@
   UINavigationController *navigationUserViewController = [[UINavigationController alloc]initWithRootViewController:userViewController];
   [self presentModalViewController:navigationUserViewController animated:NO];
 }
+- (BOOL)checkInputWithUsername:(NSString*)Username andPassword:(NSString*)Password
+{
+    if([Username isEqualToString:@""] && [Password isEqualToString:@""]){
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Log In Failed"
+                                                          message:[NSString stringWithFormat:@"%@", @"Blank Username and Password"]
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        return FALSE;
+    } else if ([Username isEqualToString:@""]) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Log In Failed"
+                                                          message:[NSString stringWithFormat:@"%@", @"Blank Username"]
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        return FALSE;
 
+    } else if([Password isEqualToString:@""]) {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Log In Failed"
+                                                          message:[NSString stringWithFormat:@"%@", @"Blank Password"]
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+        return FALSE;
+        
+    }
+    else{
+        return TRUE;
+    }
+  
+}
 - (void)loginClicked:(UIButton *)button
 {
   NSLog(@"-- LoginVC --");
   [_userNameTextField resignFirstResponder];
   [_passwordTextField resignFirstResponder];
   
-  [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-  dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
-  dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-    [self loginRequest];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-  });
+    if ([self checkInputWithUsername:_userNameTextField.text andPassword:_passwordTextField.text]) {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [self loginRequestWithUsername:_userNameTextField.text andPassword:_passwordTextField.text];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    }
+
 }
 
 @end
