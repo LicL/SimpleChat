@@ -118,12 +118,12 @@
            for (NSUInteger i=0; i<totalChat; i++)
            {
              SCChatMessage *chatMessage = [[SCChatMessage alloc] init];
-             chatMessage.created_at = [[[responseObject objectForKey:@"data"] objectAtIndex:c] objectForKey:@"created_at"];
-             chatMessage.user_name = [[[responseObject objectForKey:@"data"] objectAtIndex:c] objectForKey:@"user_name"];
              if ([[[responseObject objectForKey:@"data"] objectAtIndex:c] objectForKey:@"msg"] != [NSNull null])
                chatMessage.msg = [[[responseObject objectForKey:@"data"] objectAtIndex:c] objectForKey:@"msg"];
              else
                chatMessage.msg = @"";
+             chatMessage.created_at = [[[responseObject objectForKey:@"data"] objectAtIndex:c] objectForKey:@"created_at"];
+             chatMessage.user_name = [[[responseObject objectForKey:@"data"] objectAtIndex:c] objectForKey:@"user_name"];
              [_chatList setObject:chatMessage  forKey:[NSString stringWithFormat:@"%lu", (unsigned long)i]];
              c--;
            }

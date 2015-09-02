@@ -43,7 +43,7 @@
   UIButton *sendMessageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   sendMessageButton.frame = CGRectMake(self.view.frame.size.width-50, self.view.frame.size.height-31, 50.0, 30.0);
   [sendMessageButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-  [sendMessageButton setBackgroundColor:[UIColor purpleColor]];
+  [sendMessageButton setBackgroundColor:[UIColor lightGrayColor]];
   [sendMessageButton setTitle:@"Send" forState:UIControlStateNormal];
   [sendMessageButton addTarget:self
                        action:@selector(sendMessageButtonPressed:)
@@ -124,8 +124,11 @@
   if (cell == nil) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
   }
+  
   SCChatMessage *chatMessage = [[SCChatMessage alloc] init];
   chatMessage = [_chatList objectForKey:[NSString stringWithFormat:@"%ld", (long)indexPath.row]];
+  if ([chatMessage.user_name isEqualToString:_myUserName])
+    cell.textLabel.textAlignment = UITextAlignmentRight;
   cell.textLabel.text = chatMessage.msg;
   
   return cell;
