@@ -13,22 +13,18 @@
 @end
 
 @implementation SCLoginViewController
-{
-  NSString *imageURL;
-  NSString *display_name;
-  NSString *gender;
-  NSString *age;
-}
 
 @synthesize userNameTextField = _userNameTextField;
 @synthesize passwordTextField = _passwordTextField;
-@synthesize accessToken = _accessToken;
+@synthesize user = _user;
 
 - (void)viewDidLoad
 {
   [super viewDidLoad];
   
   self.view.backgroundColor = [UIColor whiteColor];
+  
+  _user = [[SCUser alloc] init];
   
   UILabel *userLabel = [[UILabel alloc] initWithFrame:CGRectMake(40.0, 90.0, 100.0, 30.0)];
   [userLabel setText:@"Username"];
@@ -71,10 +67,10 @@
   [manager POST:@"http://104.155.215.148:5566/login"
      parameters:@{@"user_name":Username, @"password": Password}
         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-          NSLog(@"JSON: %@", responseObject);
+          NSLog(@"User: %@", responseObject);
           if ([[responseObject objectForKey:@"status"] intValue]==0)
           {
-            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Log In Failed"
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Login Failed"
                                                               message:[NSString stringWithFormat:@"%@", [responseObject objectForKey:@"error"]]
                                                              delegate:nil
                                                     cancelButtonTitle:@"OK"
@@ -83,14 +79,15 @@
           }
           else
           {
-            _accessToken = [[responseObject objectForKey:@"data"] objectForKey:@"access_token"];
-            imageURL = [[responseObject objectForKey:@"data"] objectForKey:@"avatar"];
-            display_name = [[responseObject objectForKey:@"data"] objectForKey:@"display_name"];
+            _user.accessToken = [[responseObject objectForKey:@"data"] objectForKey:@"access_token"];
+            _user.user_name = [[responseObject objectForKey:@"data"] objectForKey:@"user_name"];
+            _user.display_name = [[responseObject objectForKey:@"data"] objectForKey:@"display_name"];
+            _user.imageURL = [[responseObject objectForKey:@"data"] objectForKey:@"avatar"];
             if ([[responseObject objectForKey:@"data"] objectForKey:@"gender"] == 0)
-              gender = @"Female";
+              _user.gender = @"Female";
             else
-              gender = @"Male";
-            age = [[responseObject objectForKey:@"data"] objectForKey:@"age"];
+              _user.gender = @"Male";
+            _user.age = [[responseObject objectForKey:@"data"] objectForKey:@"age"];
             [self loginData];
           }
         }
@@ -109,63 +106,66 @@
 - (void)loginData
 {
   SCUserViewController *userViewController = [[SCUserViewController alloc] init];
-  userViewController.accessToken = _accessToken;
-  userViewController.imageURL = imageURL;
-  userViewController.display_name = display_name;
-  userViewController.gender = gender;
-  userViewController.age = age;
+  userViewController.user = _user;
   UINavigationController *navigationUserViewController = [[UINavigationController alloc]initWithRootViewController:userViewController];
   [self presentModalViewController:navigationUserViewController animated:NO];
 }
+
 - (BOOL)checkInputWithUsername:(NSString*)Username andPassword:(NSString*)Password
 {
-    if([Username isEqualToString:@""] && [Password isEqualToString:@""]){
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Log In Failed"
-                                                          message:[NSString stringWithFormat:@"%@", @"Blank Username and Password"]
-                                                         delegate:nil
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles:nil];
-        [message show];
-        return FALSE;
-    } else if ([Username isEqualToString:@""]) {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Log In Failed"
-                                                          message:[NSString stringWithFormat:@"%@", @"Blank Username"]
-                                                         delegate:nil
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles:nil];
-        [message show];
-        return FALSE;
-
-    } else if([Password isEqualToString:@""]) {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Log In Failed"
-                                                          message:[NSString stringWithFormat:@"%@", @"Blank Password"]
-                                                         delegate:nil
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles:nil];
-        [message show];
-        return FALSE;
-        
-    }
-    else{
-        return TRUE;
-    }
+  if([Username isEqualToString:@""] && [Password isEqualToString:@""])
+  {
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Login Failed"
+                                                      message:[NSString stringWithFormat:@"%@", @"Blank Username and Password"]
+                                                     delegate:nil
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+    [message show];
+    return FALSE;
+  }
+  else if ([Username isEqualToString:@""])
+  {
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Login Failed"
+                                                      message:[NSString stringWithFormat:@"%@", @"Blank Username"]
+                                                     delegate:nil
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+    [message show];
+    return FALSE;
+    
+  }
+  else if([Password isEqualToString:@""])
+  {
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Login Failed"
+                                                      message:[NSString stringWithFormat:@"%@", @"Blank Password"]
+                                                     delegate:nil
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+    [message show];
+    return FALSE;
+    
+  }
+  else
+  {
+    return TRUE;
+  }
   
 }
+
 - (void)loginClicked:(UIButton *)button
 {
-  NSLog(@"-- LoginVC --");
   [_userNameTextField resignFirstResponder];
   [_passwordTextField resignFirstResponder];
   
-    if ([self checkInputWithUsername:_userNameTextField.text andPassword:_passwordTextField.text]) {
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [self loginRequestWithUsername:_userNameTextField.text andPassword:_passwordTextField.text];
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-        });
-    }
-
+  if ([self checkInputWithUsername:_userNameTextField.text andPassword:_passwordTextField.text]) {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+      [self loginRequestWithUsername:_userNameTextField.text andPassword:_passwordTextField.text];
+      [MBProgressHUD hideHUDForView:self.view animated:YES];
+    });
+  }
+  
 }
 
 @end

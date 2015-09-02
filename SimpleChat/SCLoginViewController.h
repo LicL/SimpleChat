@@ -10,7 +10,7 @@
 #import "MBProgressHUD.h"
 #import "AFHTTPRequestOperationManager.h"
 
-#import "User.h"
+#import "SCUser.h"
 #import "SCUserViewController.h"
 
 @interface SCLoginViewController : UIViewController
@@ -18,6 +18,6 @@
 @property (nonatomic, strong) IBOutlet UITextField *userNameTextField;
 @property (nonatomic, strong) IBOutlet UITextField *passwordTextField;
 
-@property (strong, nonatomic) NSString *accessToken;
+@property (strong, nonatomic) SCUser *user;
 
 @end

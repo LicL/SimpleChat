@@ -8,13 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "AFHTTPRequestOperationManager.h"
 
+#import "SCUser.h"
+#import "SCChatMessage.h"
 #import "SCMessageViewController.h"
 
 @interface SCFriendListTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) NSString *accessToken;
-@property (strong, nonatomic) NSMutableArray *friendListArray;
-@property (strong, nonatomic) NSMutableArray *friendThumbnailArray;
+@property (nonatomic, strong) NSString *myUserName;
+@property (strong, nonatomic) NSMutableDictionary *friendList;
+@property (strong, nonatomic) NSMutableDictionary *chatList;
 
 @end

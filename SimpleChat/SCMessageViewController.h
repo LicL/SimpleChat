@@ -7,15 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AFHTTPRequestOperationManager.h"
+
+#import "SCUser.h"
+#import "SCChatMessage.h"
 
 @interface SCMessageViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet UITextField *messageTextField;
-//@property (nonatomic, strong) IBOutlet UITableView *messageHistoryTableView;
 @property (nonatomic, strong) NSString *accessToken;
-@property (nonatomic, strong) NSString *friendId;
-@property (nonatomic, strong) NSMutableArray* messageArray;
+@property (nonatomic, strong) NSString *myUserName;
+@property (nonatomic, strong) NSString *friendUserName;
+@property (strong, nonatomic) NSMutableDictionary *chatList;
+
+//@property (nonatomic, strong) IBOutlet UITableView *messageHistoryTableView;
 @property (nonatomic, strong) UITextField *activeTextField;
+
 
 @end

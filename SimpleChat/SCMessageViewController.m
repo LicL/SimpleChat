@@ -19,10 +19,12 @@
 
 @synthesize scrollView = _scrollView;
 @synthesize messageTextField = _messageTextField;
-//@synthesize messageHistoryTableView = _messageHistoryTableView;
 @synthesize accessToken = _accessToken;
-@synthesize friendId = _friendId;
-@synthesize messageArray = _messageArray;
+@synthesize myUserName = _myUserName;
+@synthesize friendUserName = _friendUserName;
+@synthesize chatList = _chatList;
+
+//@synthesize messageHistoryTableView = _messageHistoryTableView;
 @synthesize activeTextField = _activeTextField;
 
 - (void)viewDidLoad
@@ -37,12 +39,6 @@
   [messageHistoryTableView reloadData];
   [messageHistoryTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"MessageList"];
   [self.view addSubview:messageHistoryTableView];
-  
-  _messageArray = [[NSMutableArray alloc] init];
-  [_messageArray addObject:[NSString stringWithFormat:@"D"]];
-  [_messageArray addObject:[NSString stringWithFormat:@"E"]];
-  [_messageArray addObject:[NSString stringWithFormat:@"F"]];
-  [_messageArray addObject:[NSString stringWithFormat:@"G"]];
   
   UIButton *sendMessageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   sendMessageButton.frame = CGRectMake(self.view.frame.size.width-50, self.view.frame.size.height-31, 50.0, 30.0);
@@ -65,13 +61,6 @@
 - (void)didReceiveMemoryWarning
 {
   [super didReceiveMemoryWarning];
-}
-
-- (void)sendMessageButtonPressed:(UIButton *)button
-{
-  NSString *msg = _messageTextField.text;
-  NSLog(@"-- MessageVC --");
-  NSLog(@"%@", msg);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -124,7 +113,7 @@
 
 - (NSInteger)tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)section
 {
-  return [_messageArray count];
+  return [_chatList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -135,9 +124,65 @@
   if (cell == nil) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
   }
-  cell.textLabel.text = [_messageArray objectAtIndex:indexPath.row];
+  SCChatMessage *chatMessage = [[SCChatMessage alloc] init];
+  chatMessage = [_chatList objectForKey:[NSString stringWithFormat:@"%ld", (long)indexPath.row]];
+  cell.textLabel.text = chatMessage.msg;
   
   return cell;
+}
+
+- (void)sendMessageRequestWithText:(NSString*)textMessage at:(NSString*)createdTime
+{
+  AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+  [manager POST:@"http://104.155.215.148:5566/msgs"
+     parameters:@{@"access_token":_accessToken, @"user_name": _friendUserName, @"msg": textMessage}
+        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+          NSLog(@"User: %@", responseObject);
+          if ([[responseObject objectForKey:@"status"] intValue]==0)
+          {
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Send Message Failed"
+                                                              message:[NSString stringWithFormat:@"%@", [responseObject objectForKey:@"error"]]
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles:nil];
+            [message show];
+          }
+          else
+          {
+            SCChatMessage *chatMessage = [[SCChatMessage alloc] init];
+            chatMessage.created_at = createdTime;
+            chatMessage.user_name = _myUserName;
+            chatMessage.msg = textMessage;
+            [_chatList setObject:chatMessage  forKey:[NSString stringWithFormat:@"%lu", (unsigned long)[_chatList count]+1]];
+            _messageTextField.text = @"";
+            
+            [messageHistoryTableView reloadData];
+          }
+        }
+        failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+          NSLog(@"Error: %@", error);
+          UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"ERROR!"
+                                                            message:[NSString stringWithFormat:@"%@", error]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+          [message show];
+        }
+   ];
+}
+
+- (void)sendMessageButtonPressed:(UIButton *)button
+{
+  [_messageTextField resignFirstResponder];
+  
+  NSDateFormatter *format = [[NSDateFormatter alloc] init];
+  [format setDateFormat:@"EEE, dd MMM yyy HH:mm:ss"];
+  NSDate *now = [[NSDate alloc] init];
+  NSString *dateString = [NSString stringWithFormat:@"%@ GMT", [format stringFromDate:now]];
+  
+  if (![_messageTextField.text isEqualToString:@""])
+    [self sendMessageRequestWithText:_messageTextField.text at:dateString];
+  [messageHistoryTableView reloadData];
 }
 
 @end

@@ -8,16 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-
 #import "AFHTTPRequestOperationManager.h"
+
+#import "SCUser.h"
 #import "SCFriendListTableViewController.h"
 
 @interface SCUserViewController : UIViewController
 
-@property (strong, nonatomic) NSString *accessToken;
-@property (strong, nonatomic) NSString *imageURL;
-@property (strong, nonatomic) NSString *display_name;
-@property (strong, nonatomic) NSString *gender;
-@property (strong, nonatomic) NSString *age;
+@property (strong, nonatomic) SCUser *user;
+@property (strong, nonatomic) NSMutableDictionary *friendList;
 
 @end
