@@ -101,9 +101,11 @@ static NSString *cellIdentifier = @"MessageList";
 
 - (void)scrollTableToBottom
 {
-  NSUInteger rowNumber = [messageHistoryTableView numberOfRowsInSection:0];
-  if (rowNumber > 0) [messageHistoryTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber-1 inSection:0]
-                                                    atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+  if (messageHistoryTableView.contentSize.height > messageHistoryTableView.frame.size.height-55.0)
+  {
+    CGPoint offset = CGPointMake(0, messageHistoryTableView.contentSize.height-(messageHistoryTableView.frame.size.height-55.0));
+    [messageHistoryTableView setContentOffset:offset animated:YES];
+  }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
