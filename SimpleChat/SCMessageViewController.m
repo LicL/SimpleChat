@@ -34,14 +34,14 @@ static NSString *cellIdentifier = @"MessageList";
   self.view.backgroundColor = [UIColor whiteColor];
   self.navigationItem.title = _friendUserName;
   
-  scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-31.0)];
+  scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.navigationController.toolbar.frame.size.height+20, self.view.frame.size.width, self.view.frame.size.height-31.0)];
   scrollView.translatesAutoresizingMaskIntoConstraints = NO;
   scrollView.showsVerticalScrollIndicator = YES;
   scrollView.scrollEnabled = YES;
   scrollView.userInteractionEnabled = YES;
   [self.view addSubview:scrollView];
   
-  messageHistoryTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-31.0)];
+  messageHistoryTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.navigationController.toolbar.frame.size.height+20, self.view.frame.size.width, self.view.frame.size.height-31.0)];
   messageHistoryTableView.delegate = self;
   messageHistoryTableView.dataSource = self;
   messageHistoryTableView.rowHeight = UITableViewAutomaticDimension;
@@ -52,7 +52,7 @@ static NSString *cellIdentifier = @"MessageList";
   
   if ([_chatList count] == 0)
   {
-    noMessageView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    noMessageView = [[UIView alloc] initWithFrame:CGRectMake(0, self.navigationController.toolbar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height)];
     noMessageView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:noMessageView];
     
@@ -134,7 +134,7 @@ static NSString *cellIdentifier = @"MessageList";
 {
   NSUInteger rowNumber = [messageHistoryTableView numberOfRowsInSection:0];
   if (rowNumber > 0) [messageHistoryTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber-1 inSection:0]
-                                                    atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+                                                    atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 }
 
 #pragma mark - Table view data source
