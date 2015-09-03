@@ -33,14 +33,7 @@ static NSString *cellIdentifier = @"MessageList";
   
   self.view.backgroundColor = [UIColor whiteColor];
   self.navigationItem.title = _friendUserName;
-  
-  // check if there are duplicates in _chatList
-  NSMutableDictionary *newChatList = [NSMutableDictionary dictionaryWithCapacity:[_chatList count]];
-  for(id item in [_chatList allValues]){
-    NSArray * keys = [_chatList allKeysForObject:item];
-    [newChatList setObject:item forKey:[keys objectAtIndex:0]];
-  }
-  _chatList = [[[NSMutableDictionary alloc] initWithDictionary:newChatList] mutableCopy];
+  [self checkForDuplicates];
   
   scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.navigationController.toolbar.frame.size.height+21, self.view.frame.size.width, self.view.frame.size.height-55.0)];
   scrollView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -89,6 +82,16 @@ static NSString *cellIdentifier = @"MessageList";
   [self.view addSubview:sendMessageButton];
   
   [self scrollTableToBottom];
+}
+
+- (void)checkForDuplicates
+{
+  NSMutableDictionary *newChatList = [NSMutableDictionary dictionaryWithCapacity:[_chatList count]];
+  for(id item in [_chatList allValues]){
+    NSArray * keys = [_chatList allKeysForObject:item];
+    [newChatList setObject:item forKey:[keys objectAtIndex:0]];
+  }
+  _chatList = [[[NSMutableDictionary alloc] initWithDictionary:newChatList] mutableCopy];
 }
 
 - (void)didReceiveMemoryWarning
