@@ -34,14 +34,14 @@ static NSString *cellIdentifier = @"MessageList";
   self.view.backgroundColor = [UIColor whiteColor];
   self.navigationItem.title = _friendUserName;
   
-  scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.navigationController.toolbar.frame.size.height+20, self.view.frame.size.width, self.view.frame.size.height-31.0)];
+  scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.navigationController.toolbar.frame.size.height+21, self.view.frame.size.width, self.view.frame.size.height-31.0)];
   scrollView.translatesAutoresizingMaskIntoConstraints = NO;
   scrollView.showsVerticalScrollIndicator = YES;
   scrollView.scrollEnabled = YES;
   scrollView.userInteractionEnabled = YES;
   [self.view addSubview:scrollView];
   
-  messageHistoryTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.navigationController.toolbar.frame.size.height+20, self.view.frame.size.width, self.view.frame.size.height-31.0)];
+  messageHistoryTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.navigationController.toolbar.frame.size.height+21, self.view.frame.size.width, self.view.frame.size.height-31.0)];
   messageHistoryTableView.delegate = self;
   messageHistoryTableView.dataSource = self;
   messageHistoryTableView.rowHeight = UITableViewAutomaticDimension;
@@ -88,6 +88,13 @@ static NSString *cellIdentifier = @"MessageList";
   [super didReceiveMemoryWarning];
 }
 
+- (void)scrollTableToBottom
+{
+  NSUInteger rowNumber = [messageHistoryTableView numberOfRowsInSection:0];
+  if (rowNumber > 0) [messageHistoryTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber-1 inSection:0]
+                                                    atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(keyboardWillShow:)
@@ -108,7 +115,7 @@ static NSString *cellIdentifier = @"MessageList";
                                                 object:nil];
 }
 
-#pragma mark - keyboard movements
+#pragma mark - Keyboard Movements
 - (void)keyboardWillShow:(NSNotification *)notification
 {
   [self scrollTableToBottom];
@@ -128,13 +135,6 @@ static NSString *cellIdentifier = @"MessageList";
     f.origin.y = 0.0f;
     self.view.frame = f;
   }];
-}
-
-- (void)scrollTableToBottom
-{
-  NSUInteger rowNumber = [messageHistoryTableView numberOfRowsInSection:0];
-  if (rowNumber > 0) [messageHistoryTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber-1 inSection:0]
-                                                    atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 }
 
 #pragma mark - Table view data source
@@ -158,7 +158,7 @@ static NSString *cellIdentifier = @"MessageList";
   return cell;
 }
 
-#pragma mark Method to configure the appearance of a message list prototype cell
+#pragma mark - Method to configure the appearance of a message list prototype cell
 
 - (void)configureCell:(SCChatMessageCell*)messageCell forIndexPath:(NSIndexPath*)indexPath
 {
