@@ -35,21 +35,21 @@ static NSString *cellIdentifier = @"MessageList";
   self.navigationItem.title = _friendUserName;
   [self checkForDuplicates];
   
-  scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.navigationController.toolbar.frame.size.height+21, self.view.frame.size.width, self.view.frame.size.height-55.0)];
+  scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-40.0)];
   scrollView.translatesAutoresizingMaskIntoConstraints = NO;
   scrollView.showsVerticalScrollIndicator = YES;
   scrollView.scrollEnabled = YES;
   scrollView.userInteractionEnabled = YES;
   [self.view addSubview:scrollView];
   
-  messageHistoryTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.navigationController.toolbar.frame.size.height+21, self.view.frame.size.width, self.view.frame.size.height-55.0)];
+  messageHistoryTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, scrollView.frame.size.width, scrollView.frame.size.height)];
   messageHistoryTableView.delegate = self;
   messageHistoryTableView.dataSource = self;
   messageHistoryTableView.rowHeight = UITableViewAutomaticDimension;
   [messageHistoryTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
   [messageHistoryTableView reloadData];
   [messageHistoryTableView registerClass:[SCChatMessageCell class] forCellReuseIdentifier:cellIdentifier];
-  [self.view addSubview:messageHistoryTableView];
+  [scrollView addSubview:messageHistoryTableView];
   
   if ([_chatList count] == 0)
   {
