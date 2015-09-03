@@ -11,10 +11,10 @@
 
 #import "SCUser.h"
 #import "SCChatMessage.h"
+#import "SCChatMessageCell.h"
 
 @interface SCMessageViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
-@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet UITextField *messageTextField;
 @property (nonatomic, strong) NSString *accessToken;
 @property (nonatomic, strong) NSString *myUserName;

@@ -8,17 +8,19 @@
 
 #import "SCMessageViewController.h"
 
+static NSString *cellIdentifier = @"MessageList";
+
 @interface SCMessageViewController ()
 
 @end
 
 @implementation SCMessageViewController
 {
+  UIScrollView *scrollView;
   UITableView *messageHistoryTableView;
   UIView *noMessageView;
 }
 
-@synthesize scrollView = _scrollView;
 @synthesize messageTextField = _messageTextField;
 @synthesize accessToken = _accessToken;
 @synthesize myUserName = _myUserName;
@@ -32,12 +34,20 @@
   self.view.backgroundColor = [UIColor whiteColor];
   self.navigationItem.title = _friendUserName;
   
-  messageHistoryTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+  scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-31.0)];
+  scrollView.translatesAutoresizingMaskIntoConstraints = NO;
+  scrollView.showsVerticalScrollIndicator = YES;
+  scrollView.scrollEnabled = YES;
+  scrollView.userInteractionEnabled = YES;
+  [self.view addSubview:scrollView];
+  
+  messageHistoryTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-31.0)];
   messageHistoryTableView.delegate = self;
   messageHistoryTableView.dataSource = self;
+  messageHistoryTableView.rowHeight = UITableViewAutomaticDimension;
   [messageHistoryTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
   [messageHistoryTableView reloadData];
-  [messageHistoryTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"MessageList"];
+  [messageHistoryTableView registerClass:[SCChatMessageCell class] forCellReuseIdentifier:cellIdentifier];
   [self.view addSubview:messageHistoryTableView];
   
   if ([_chatList count] == 0)
@@ -53,22 +63,24 @@
     [noMessageView addSubview:noMessageLabel];
   }
   
-  UIButton *sendMessageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-  sendMessageButton.frame = CGRectMake(self.view.frame.size.width-50, self.view.frame.size.height-31, 50.0, 30.0);
-  [sendMessageButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-  [sendMessageButton setBackgroundColor:[UIColor lightGrayColor]];
-  [sendMessageButton setTitle:@"Send" forState:UIControlStateNormal];
-  [sendMessageButton addTarget:self
-                       action:@selector(sendMessageButtonPressed:)
-             forControlEvents:UIControlEventTouchUpInside];
-  [self.view addSubview:sendMessageButton];
-  
   _messageTextField = [[UITextField alloc] init];
   _messageTextField.frame = CGRectMake(1, self.view.frame.size.height-31, self.view.frame.size.width-52.0, 30.0);
   _messageTextField.borderStyle = UITextBorderStyleRoundedRect;
   _messageTextField.placeholder = @"Type your message...";
   _messageTextField.delegate = self;
   [self.view addSubview:_messageTextField];
+  
+  UIButton *sendMessageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  sendMessageButton.frame = CGRectMake(self.view.frame.size.width-50, self.view.frame.size.height-31, 50.0, 30.0);
+  [sendMessageButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+  [sendMessageButton setBackgroundColor:[UIColor lightGrayColor]];
+  [sendMessageButton setTitle:@"Send" forState:UIControlStateNormal];
+  [sendMessageButton addTarget:self
+                        action:@selector(sendMessageButtonPressed:)
+              forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:sendMessageButton];
+  
+  [self scrollTableToBottom];
 }
 
 - (void)didReceiveMemoryWarning
@@ -99,6 +111,7 @@
 #pragma mark - keyboard movements
 - (void)keyboardWillShow:(NSNotification *)notification
 {
+  [self scrollTableToBottom];
   CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
   
   [UIView animateWithDuration:0.3 animations:^{
@@ -117,34 +130,50 @@
   }];
 }
 
+- (void)scrollTableToBottom
+{
+  NSUInteger rowNumber = [messageHistoryTableView numberOfRowsInSection:0];
+  if (rowNumber > 0) [messageHistoryTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:rowNumber-1 inSection:0]
+                                                    atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+}
+
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)theTableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
   return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
   return [_chatList count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  static NSString *cellIdentifier = @"MessageList";
-  UITableViewCell *cell = (UITableViewCell *)[theTableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+  SCChatMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
   
-  if (cell == nil) {
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-  }
+  [self configureCell:cell forIndexPath:indexPath];
   
+  return cell;
+}
+
+#pragma mark Method to configure the appearance of a message list prototype cell
+
+- (void)configureCell:(SCChatMessageCell*)messageCell forIndexPath:(NSIndexPath*)indexPath
+{
   SCChatMessage *chatMessage = [[SCChatMessage alloc] init];
   chatMessage = [_chatList objectForKey:[NSString stringWithFormat:@"%ld", (long)indexPath.row]];
   if ([chatMessage.user_name isEqualToString:_myUserName])
-    cell.textLabel.textAlignment = UITextAlignmentRight;
-  cell.textLabel.text = chatMessage.msg;
-  
-  return cell;
+  {
+    messageCell.friendMessageLabel.text = @"";
+    messageCell.myMessageLabel.text = chatMessage.msg;
+  }
+  else
+  {
+    messageCell.myMessageLabel.text = @"";
+    messageCell.friendMessageLabel.text = chatMessage.msg;
+  }
 }
 
 - (void)sendMessageRequestWithText:(NSString*)textMessage at:(NSString*)createdTime
@@ -176,10 +205,11 @@
             chatMessage.created_at = createdTime;
             chatMessage.user_name = _myUserName;
             chatMessage.msg = textMessage;
-            [_chatList setObject:chatMessage  forKey:[NSString stringWithFormat:@"%lu", (unsigned long)[_chatList count]+1]];
+            [_chatList setObject:chatMessage  forKey:[NSString stringWithFormat:@"%lu", (unsigned long)[_chatList count]]];
             _messageTextField.text = @"";
             
             [messageHistoryTableView reloadData];
+            [self scrollTableToBottom];
           }
         }
         failure:^(AFHTTPRequestOperation *operation, NSError *error) {

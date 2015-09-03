@@ -21,6 +21,7 @@
 		87132AA91B937A6A005C8BE0 /* SCFriendListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87132AA81B937A6A005C8BE0 /* SCFriendListTableViewController.m */; };
 		871ABC311B97468D00F8BEBC /* SCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 871ABC301B97468D00F8BEBC /* SCUser.m */; };
 		871ABC341B97470900F8BEBC /* SCChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 871ABC331B97470900F8BEBC /* SCChatMessage.m */; };
+		871ABC3D1B97E88500F8BEBC /* SCChatMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 871ABC3C1B97E88500F8BEBC /* SCChatMessageCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		871ABC301B97468D00F8BEBC /* SCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCUser.m; sourceTree = "<group>"; };
 		871ABC321B97470900F8BEBC /* SCChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCChatMessage.h; sourceTree = "<group>"; };
 		871ABC331B97470900F8BEBC /* SCChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCChatMessage.m; sourceTree = "<group>"; };
+		871ABC3B1B97E88500F8BEBC /* SCChatMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCChatMessageCell.h; sourceTree = "<group>"; };
+		871ABC3C1B97E88500F8BEBC /* SCChatMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCChatMessageCell.m; sourceTree = "<group>"; };
 		F1C4904C1EA252D6CB96444E /* Pods-SimpleChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleChat/Pods-SimpleChat.debug.xcconfig"; sourceTree = "<group>"; };
 		F7817223FDA08AF3A5ABA998 /* Pods-SimpleChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleChat/Pods-SimpleChat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,6 +124,8 @@
 				871ABC301B97468D00F8BEBC /* SCUser.m */,
 				871ABC321B97470900F8BEBC /* SCChatMessage.h */,
 				871ABC331B97470900F8BEBC /* SCChatMessage.m */,
+				871ABC3B1B97E88500F8BEBC /* SCChatMessageCell.h */,
+				871ABC3C1B97E88500F8BEBC /* SCChatMessageCell.m */,
 				87A8343A1B9409B000CE5C49 /* ViewController */,
 				87132A641B932B36005C8BE0 /* Main.storyboard */,
 				87132A671B932B36005C8BE0 /* Images.xcassets */,
@@ -317,6 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87132A9A1B937843005C8BE0 /* SCLoginViewController.m in Sources */,
+				871ABC3D1B97E88500F8BEBC /* SCChatMessageCell.m in Sources */,
 				87132AA91B937A6A005C8BE0 /* SCFriendListTableViewController.m in Sources */,
 				871ABC341B97470900F8BEBC /* SCChatMessage.m in Sources */,
 				87132A631B932B35005C8BE0 /* ViewController.m in Sources */,

@@ -101,7 +101,7 @@
   [manager GET:@"http://104.155.215.148:5566/msgs"
     parameters:@{@"access_token": _accessToken, @"user_name": Username}
        success:^(AFHTTPRequestOperation *operation, id responseObject) {
-         NSLog(@"Messages : %@", responseObject);
+         NSLog(@"Messages with %@: %@", Username, responseObject);
          if ([[responseObject objectForKey:@"status"] intValue]==0)
          {
            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"ERROR!"
