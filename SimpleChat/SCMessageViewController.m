@@ -53,7 +53,7 @@ static NSString *cellIdentifier = @"MessageList";
   
   if ([_chatList count] == 0)
   {
-    noMessageView = [[UIView alloc] initWithFrame:CGRectMake(0, self.navigationController.toolbar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height)];
+    noMessageView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     noMessageView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:noMessageView];
     
